@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,20 +23,60 @@ namespace code
             }
             Console.WriteLine("Array has been filled.");
 
-            int index = 0, index2 = 0;
+            // sorting the array
+            int min = nums[0];
+            int index = 0;
             for (int i = 0; i < nums.Length; i++)
             {
+                min = nums[i];
+                index = i;
                 for (int i2 = i + 1; i2 < nums.Length; i2++)
                 {
-                    if (nums[i] + nums[i2] == 9)
+                    if (min > nums[i2])
+                    {
+                        min = nums[i2];
+                        index = i2;
+                    }
+                }
+                nums[index] = nums[i];
+                nums[i] = min;
+            }
+
+            Console.WriteLine("Array has been sorted:");
+            for (int i = 0; i < nums.Length; i++)
+            {
+                Console.WriteLine(nums[i]);
+            }
+
+            bool check = false;
+            index = -1;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (target == nums[i])
+                {
+                    index = i;
+                    check = true;
+                }
+            }
+
+            if (check) // target has been found?
+            {
+                Console.WriteLine("Output = " + index);
+            }
+            else
+            {
+                index = nums.Length - 1; // since the array is sorted, if there is no number bigger then its gonna be last index
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    if (nums[i] >= target)
                     {
                         index = i;
-                        index2 = i2;
                         break;
                     }
                 }
+                Console.WriteLine("Output = " + index);
             }
-            Console.WriteLine("Output: [{0},{1}]", index, index2);
+
 
             Console.ReadLine();
         }
