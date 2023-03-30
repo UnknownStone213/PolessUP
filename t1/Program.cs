@@ -10,7 +10,10 @@ namespace t1
     {
         static void Main(string[] args)
         {
-            //hello
+            Console.WriteLine(" +\"\"\"\"\"+ \n(| o o |)\n |  ^  | \n | '-' | \n +\"\"\"\"\"+ ");
+
+
+            Console.ReadLine();
         }
     }
 }
