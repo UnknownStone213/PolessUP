@@ -10,8 +10,6 @@ namespace code
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter target:");
-            int target = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Enter the length of array:");
             int[] nums = new int[Convert.ToInt32(Console.ReadLine())];
             Console.WriteLine("Fill the array:");
@@ -22,20 +20,25 @@ namespace code
             }
             Console.WriteLine("Array has been filled.");
 
-            int index = 0, index2 = 0;
-            for (int i = 0; i < nums.Length; i++)
+            int output = nums.Max();
+            if (nums.Length < 3)
             {
-                for (int i2 = i + 1; i2 < nums.Length; i2++)
+                Console.WriteLine("Output = " + output);
+            }
+            else
+            {
+                int max1 = nums.Min();
+                int max2 = nums.Min();
+                int max3 = nums.Min();
+                for (int i = 0; i < 3; i++) // go through array 3 times and find 3rd max
                 {
-                    if (nums[i] + nums[i2] == 9)
+                    for (int i2 = 0; i2 < nums.Length; i2++)
                     {
-                        index = i;
-                        index2 = i2;
-                        break;
+
                     }
                 }
             }
-            Console.WriteLine("Output: [{0},{1}]", index, index2);
+
 
             Console.ReadLine();
         }
