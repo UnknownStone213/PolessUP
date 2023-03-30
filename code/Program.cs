@@ -27,16 +27,20 @@ namespace code
             }
             else
             {
-                int max1 = nums.Min();
-                int max2 = nums.Min();
-                int max3 = nums.Min();
-                for (int i = 0; i < 3; i++) // go through array 3 times and find 3rd max
+                int max = nums.Min();
+                for (int i = 0; i < 3; i++) // going through array 3 times and find 3rd max (changing biggest max to min every time)
                 {
+                    max = nums.Max();
                     for (int i2 = 0; i2 < nums.Length; i2++)
                     {
-
+                        if (nums[i2] == max)
+                        {
+                            nums[i2] = nums.Min();
+                            break;
+                        }
                     }
                 }
+                Console.WriteLine("Output = " + max);
             }
 
 
