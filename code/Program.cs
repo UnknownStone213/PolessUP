@@ -11,30 +11,100 @@ namespace code
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter the length of array:");
-            int[] nums = new int[Convert.ToInt32(Console.ReadLine())];
-            Console.WriteLine("Fill the array:");
-            for (int i = 0; i < nums.Length; i++)
-            {
-                Console.Write("nums[{0}] = ", i);
-                nums[i] = Convert.ToInt32(Console.ReadLine());
-            }
-            Console.WriteLine("Array has been filled.");
+            int[] rgb = new int[3];
+            Console.WriteLine("Enter red:");
+            rgb[0] = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter green:");
+            rgb[1] = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter blue:");
+            rgb[2] = Convert.ToInt32(Console.ReadLine());
 
-            int index = 0;
-            int max = nums[0];
-            for (int i = 1; i < nums.Length; i++)
-            {
-                if (max < nums[i])
-                {
-                    max = nums[i];
-                    index = i;
-                }
-            }
-            Console.WriteLine("Output (position of max element) = " + index);
-
+            Console.WriteLine(Output(rgb));
 
             Console.ReadLine();
+
+            string Output(int[] input) 
+            {
+                string output = "";
+
+                for (int i = 0; i < 3; i++)
+                {
+                    if (input[i] < 0)
+                    {
+                        output += "00";
+                    }
+                    else if (input[i] > 255)
+                    {
+                        output += "FF";
+                    }
+                    else
+                    {
+                        int sixteenth = input[i] / 16; // how many times does 16 fit in a number
+                        input[i] -= 16 * sixteenth;
+                        if (sixteenth < 10)
+                        {
+                            output += sixteenth;
+                        }
+                        else 
+                        {
+                            switch (sixteenth)
+                            {
+                                case 10:
+                                    output += "A";
+                                    break;
+                                case 11:
+                                    output += "B";
+                                    break;
+                                case 12:
+                                    output += "C";
+                                    break;
+                                case 13:
+                                    output += "D";
+                                    break;
+                                case 14:
+                                    output += "E";
+                                    break;
+                                case 15:
+                                    output += "F";
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                        if (input[i] < 10)
+                        {
+                            output += input[i];
+                        }
+                        else
+                        {
+                            switch (input[i])
+                            {
+                                case 10:
+                                    output += "A";
+                                    break;
+                                case 11:
+                                    output += "B";
+                                    break;
+                                case 12:
+                                    output += "C";
+                                    break;
+                                case 13:
+                                    output += "D";
+                                    break;
+                                case 14:
+                                    output += "E";
+                                    break;
+                                case 15:
+                                    output += "F";
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                    }
+                }
+                return output;
+            }
         }
     }
 }
