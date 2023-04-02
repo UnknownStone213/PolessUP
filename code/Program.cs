@@ -10,32 +10,36 @@ namespace code
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter target:");
-            int target = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter the length of array:");
-            int[] nums = new int[Convert.ToInt32(Console.ReadLine())];
-            Console.WriteLine("Fill the array:");
-            for (int i = 0; i < nums.Length; i++)
-            {
-                Console.Write("nums[{0}] = ", i);
-                nums[i] = Convert.ToInt32(Console.ReadLine());
-            }
-            Console.WriteLine("Array has been filled.");
+            Console.WriteLine("Enter the number:");
+            int num = Convert.ToInt32(Console.ReadLine());
 
-            int index = 0, index2 = 0;
-            for (int i = 0; i < nums.Length; i++)
+            List<int> list = new List<int>(); // primt numbers
+
+            for (int i = 2; i < num; i++)
             {
-                for (int i2 = i + 1; i2 < nums.Length; i2++)
+                bool prime = true;
+                for (int i2 = i - 1; i2 > 1; i2--) // dividing the number i by i2 that is less than i by 1 and more than 1 (not including itself and 1)
                 {
-                    if (nums[i] + nums[i2] == 9)
+                    if (i % i2 == 0)
                     {
-                        index = i;
-                        index2 = i2;
+                        prime = false;
                         break;
                     }
                 }
+
+                if (prime)
+                {
+                    list.Add(i);
+                }
             }
-            Console.WriteLine("Output: [{0},{1}]", index, index2);
+
+            Console.WriteLine("Output: " + list.Count);
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                Console.Write(list[i] + ", ");
+            }
+
 
             Console.ReadLine();
         }
