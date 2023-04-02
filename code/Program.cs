@@ -10,32 +10,50 @@ namespace code
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter target:");
-            int target = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter the length of array:");
-            int[] nums = new int[Convert.ToInt32(Console.ReadLine())];
-            Console.WriteLine("Fill the array:");
-            for (int i = 0; i < nums.Length; i++)
-            {
-                Console.Write("nums[{0}] = ", i);
-                nums[i] = Convert.ToInt32(Console.ReadLine());
-            }
-            Console.WriteLine("Array has been filled.");
+            Console.WriteLine("Enter number:");
+            double num = Convert.ToInt32(Console.ReadLine());
 
-            int index = 0, index2 = 0;
-            for (int i = 0; i < nums.Length; i++)
+            List<double> list = new List<double>(); // powers of 3
+
+            // get all powers of 3 that are lower than number
+            int power = 1;
+            do
             {
-                for (int i2 = i + 1; i2 < nums.Length; i2++)
+                if (Math.Pow(3, power) <= num)
                 {
-                    if (nums[i] + nums[i2] == 9)
-                    {
-                        index = i;
-                        index2 = i2;
-                        break;
-                    }
+                    list.Add(Math.Pow(3, power));
+                    power++;
+                }
+                else 
+                {
+                    break; 
+                }
+            } while (true);
+
+            // check
+            for (int i = 0; i < list.Count; i++)
+            {
+                Console.WriteLine("list[{0}] = {1}", i, list[i]);
+            }
+
+            // subtract powers of 3 (from higher to lower)
+            for (int i = list.Count - 1; i >= 0; i--)
+            {
+                if (list[i] <= num)
+                {
+                    num -= list[i];
                 }
             }
-            Console.WriteLine("Output: [{0},{1}]", index, index2);
+
+            if (num == 0)
+            {
+                Console.WriteLine("Output: true");
+            }
+            else
+            {
+                Console.WriteLine("Output: false");
+            }
+
 
             Console.ReadLine();
         }
