@@ -57,7 +57,7 @@ namespace code
                             int max2 = 0;
                             for (int i3 = 0; i3 < codes.Count; i3++)
                             {
-                                if (i3 != i2 && max2 < amount[i3])
+                                if (codes[i3] != last && max2 < amount[i3])
                                 {
                                     max2 = amount[i3];
                                 }
@@ -66,7 +66,7 @@ namespace code
                             // find second max code
                             for (int i3 = 0; i3 < codes.Count; i3++)
                             {
-                                if (i3 != i2 && max2 == amount[i3])
+                                if (codes[i3] != last && max2 == amount[i3])
                                 {
                                     output += codes[i3] + " ";
                                     last = codes[i3];
@@ -74,12 +74,14 @@ namespace code
                                     break;
                                 }
                             }
+                            break;
                         }
                         else // not same as last
                         {
                             output += codes[i2] + " ";
                             last = codes[i2];
                             amount[i2]--;
+                            break;
                         }
                     }
                 }
