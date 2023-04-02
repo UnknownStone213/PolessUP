@@ -11,10 +11,11 @@ namespace code
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter codes (separated by spaces):"); // через пробел
+            Console.WriteLine("Enter codes (separated by spaces):");
             string s = Console.ReadLine();
 
-            string[] amountOfCodes = s.Split(' ');
+            string[] amountOfCodes = s.Split(new char[] { ' ' });
+            Console.WriteLine("amountOfCodes=" + amountOfCodes.Length);
 
             List<char> codes = new List<char>(); // exclusive code
             List<int> amount = new List<int>(); // amount of those codes
@@ -22,12 +23,12 @@ namespace code
             bool same = false;
 
             // counting all codes
-            for (int i = 0; i < s.Length; i++)
+            for (int i = 0; i < amountOfCodes.Length; i++)
             {
                 same = false;
                 for (int i2 = 0; i2 < codes.Count; i2++) // same code detected (+1)
                 {
-                    if (codes[i2] == s[i])
+                    if (codes[i2] == Convert.ToChar(amountOfCodes[i]))
                     {
                         amount[i2]++;
                         same = true;
@@ -36,9 +37,15 @@ namespace code
 
                 if (!same) // new code
                 {
-                    codes.Add(s[i]);
+                    codes.Add(Convert.ToChar(amountOfCodes[i]));
                     amount.Add(1);
                 }
+            }
+
+            // check
+            for (int i = 0; i < codes.Count; i++)
+            {
+                Console.WriteLine("codes[{0}]={1}, amount[{2}]={3}", i, codes[i], i, amount[i]);
             }
 
             // sorting 
@@ -53,27 +60,21 @@ namespace code
                     {
                         if (last == codes[i2]) // same as last, skip
                         {
-                            // get second max amount
+                            // get second max
                             int max2 = 0;
+                            int index = -1;
                             for (int i3 = 0; i3 < codes.Count; i3++)
                             {
                                 if (codes[i3] != last && max2 < amount[i3])
                                 {
                                     max2 = amount[i3];
+                                    index = i3;
                                 }
                             }
 
-                            // find second max code
-                            for (int i3 = 0; i3 < codes.Count; i3++)
-                            {
-                                if (codes[i3] != last && max2 == amount[i3])
-                                {
-                                    output += codes[i3] + " ";
-                                    last = codes[i3];
-                                    amount[i3]--;
-                                    break;
-                                }
-                            }
+                            output += codes[index] + " ";
+                            last = codes[index];
+                            amount[index]--;
                             break;
                         }
                         else // not same as last
