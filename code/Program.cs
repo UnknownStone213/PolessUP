@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization.Formatters;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,32 +11,37 @@ namespace code
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter target:");
-            int target = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter the length of array:");
-            int[] nums = new int[Convert.ToInt32(Console.ReadLine())];
-            Console.WriteLine("Fill the array:");
-            for (int i = 0; i < nums.Length; i++)
-            {
-                Console.Write("nums[{0}] = ", i);
-                nums[i] = Convert.ToInt32(Console.ReadLine());
-            }
-            Console.WriteLine("Array has been filled.");
+            Console.WriteLine("Enter string:");
+            string s = Console.ReadLine();
 
-            int index = 0, index2 = 0;
-            for (int i = 0; i < nums.Length; i++)
+            List<char> letters = new List<char>(); // exclusive letters
+            List<int> amount = new List<int>(); // amount of those letters
+
+            bool same = false;
+
+            // counting all letters
+            for (int i = 0; i < s.Length; i++)
             {
-                for (int i2 = i + 1; i2 < nums.Length; i2++)
+                same = false;
+                for (int i2 = 0; i2 < letters.Count; i2++) // same letter detected (+1)
                 {
-                    if (nums[i] + nums[i2] == 9)
+                    if (letters[i2] == s[i])
                     {
-                        index = i;
-                        index2 = i2;
-                        break;
+                        amount[i2]++;
+                        same = true;
                     }
                 }
+
+                if (!same) // new letter
+                {
+                    letters.Add(s[i]);
+                    amount.Add(1);
+                }
             }
-            Console.WriteLine("Output: [{0},{1}]", index, index2);
+
+            int output = amount.Max() - amount.Min();
+            Console.WriteLine("Output: " + output);
+
 
             Console.ReadLine();
         }
