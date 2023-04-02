@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -11,13 +12,12 @@ namespace code
     {
         static void Main(string[] args)
         {
-            // проверь 2.5 и 2.5.1
             Console.WriteLine("Enter version1:");
             string version1 = Console.ReadLine();
             Console.WriteLine("Enter version2:");
             string version2 = Console.ReadLine();
 
-            //version1 += "."; version2 += "."; // artificial point in the end
+            version1 += "."; version2 += "."; // artificial point in the end (w/o it 1.1 and 1.11 not working properly because of the length)
 
             // finding the amount of revisions
             int amountRevisions = 0;
@@ -48,32 +48,42 @@ namespace code
             }
             amountRevisions++;
 
-            //
             int output = 0;
-            int pointer = 0; // if the revision is the same, then i will start comparing next revision from this position
-            int pointer2 = 0; // for the second version
+            int pointer = 0, pointer2 = 0; // position of current revision at string
             int num1 = 0, num2 = 0;
             bool end = false;
             for (int i = 0; i < amountRevisions; i++)
             {
-                if (pointer != 0) // next cycle FOR will not work w/o it
+                num1 = 0; num2 = 0;
+                if (pointer != 0)
                 {
                     pointer++;
                 }
                 pointer2 = pointer;
 
+                Console.WriteLine("pointer = " + pointer);
+
                 for (int i2 = pointer; i2 < version1.Length; i2++)
                 {
                     try
                     {
-                        if (version1[i2] == '.') // 2.5 and 2.5.1 exception because OutOfRange pointer
+                        if (version1[i2] == '.')
                         {
                             num1 = Convert.ToInt32(version1.Substring(pointer, i2 - pointer));
                             pointer = i2;
                             break;
                         }
+                        else
+                        {
+                            if (pointer == version1.Length - 1)
+                            {
+                                num1 = Convert.ToInt32(version1.Substring(pointer, version1.Length - pointer));
+                                pointer = version1.Length;
+                                break;
+                            }
+                        }
                     }
-                    catch (Exception)
+                    catch (Exception) // 2.5 and 2.5.1 exception because OutOfRange pointer
                     {
                         try
                         {
@@ -99,8 +109,17 @@ namespace code
                             pointer2 = i2;
                             break;
                         }
+                        else
+                        {
+                            if (pointer2 == version2.Length - 1)
+                            {
+                                num2 = Convert.ToInt32(version2.Substring(pointer2, version2.Length - pointer2));
+                                pointer2 = version2.Length;
+                                break;
+                            }
+                        }
                     }
-                    catch (Exception)
+                    catch (Exception) // 2.5 and 2.5.1 exception because OutOfRange pointer
                     {
                         try
                         {
@@ -116,10 +135,11 @@ namespace code
                 }
 
                 pointer = Math.Max(pointer, pointer2);
-                pointer2 = Math.Max(pointer, pointer2);
+                pointer2 = pointer;
 
                 if (num1 != num2)
                 {
+                    Console.WriteLine("num1 = " + num1 + ", num2 = " + num2);
                     end = true;
                     if (num1 < num2)
                     {
@@ -137,7 +157,7 @@ namespace code
                 }
             }
 
-            Console.WriteLine("Output: " + output);
+            Console.WriteLine("\nOutput: " + output);
 
             Console.ReadLine();
         }
