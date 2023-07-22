@@ -1,1 +1,1012 @@
-g4r
+//t1
+
+Console.WriteLine(" +\"\"\"\"\"+ \n(| o o |)\n |  ^  | \n | '-' | \n +\"\"\"\"\"+ ");
+
+//t2
+
+Console.WriteLine("Enter target:");
+            int target = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter the length of array:");
+            int[] nums = new int[Convert.ToInt32(Console.ReadLine())];
+            Console.WriteLine("Fill the array:");
+            for (int i = 0; i < nums.Length; i++)
+            {
+                Console.Write("nums[{0}] = ", i);
+                nums[i] = Convert.ToInt32(Console.ReadLine());
+            }
+            Console.WriteLine("Array has been filled.");
+
+            int index = 0, index2 = 0;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                for (int i2 = i + 1; i2 < nums.Length; i2++)
+                {
+                    if (nums[i] + nums[i2] == 9)
+                    {
+                        index = i;
+                        index2 = i2;
+                        break;
+                    }
+                }
+            }
+            Console.WriteLine("Output: [{0},{1}]", index, index2);
+
+            Console.ReadLine();
+
+//t3
+
+Console.WriteLine("Enter target:");
+            int target = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter the length of array:");
+            int[] nums = new int[Convert.ToInt32(Console.ReadLine())];
+            Console.WriteLine("Fill the array:");
+            for (int i = 0; i < nums.Length; i++)
+            {
+                Console.Write("nums[{0}] = ", i);
+                nums[i] = Convert.ToInt32(Console.ReadLine());
+            }
+            Console.WriteLine("Array has been filled.");
+
+            // sorting the array
+            int min = nums[0];
+            int index = 0;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                min = nums[i];
+                index = i;
+                for (int i2 = i + 1; i2 < nums.Length; i2++)
+                {
+                    if (min > nums[i2])
+                    {
+                        min = nums[i2];
+                        index = i2;
+                    }
+                }
+                nums[index] = nums[i];
+                nums[i] = min;
+            }
+
+            Console.WriteLine("Array has been sorted:");
+            for (int i = 0; i < nums.Length; i++)
+            {
+                Console.WriteLine(nums[i]);
+            }
+
+            bool check = false;
+            index = -1;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (target == nums[i])
+                {
+                    index = i;
+                    check = true;
+                }
+            }
+
+            if (check) // target has been found?
+            {
+                Console.WriteLine("Output = " + index);
+            }
+            else
+            {
+                index = nums.Length - 1; // since the array is sorted, if there is no number bigger then its gonna be last index
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    if (nums[i] >= target)
+                    {
+                        index = i;
+                        break;
+                    }
+                }
+                Console.WriteLine("Output = " + index);
+            }
+
+
+            Console.ReadLine();
+
+//t4
+
+Console.WriteLine("Enter the length of array:");
+            int[] nums = new int[Convert.ToInt32(Console.ReadLine())];
+            Console.WriteLine("Fill the array:");
+            for (int i = 0; i < nums.Length; i++)
+            {
+                Console.Write("nums[{0}] = ", i);
+                nums[i] = Convert.ToInt32(Console.ReadLine());
+            }
+            Console.WriteLine("Array has been filled.");
+
+            int output = nums.Max();
+            if (nums.Length < 3)
+            {
+                Console.WriteLine("Output = " + output);
+            }
+            else
+            {
+                int max = nums.Min();
+                for (int i = 0; i < 3; i++) // going through array 3 times and find 3rd max (changing biggest max to min every time)
+                {
+                    max = nums.Max();
+                    for (int i2 = 0; i2 < nums.Length; i2++)
+                    {
+                        if (nums[i2] == max)
+                        {
+                            nums[i2] = nums.Min();
+                            break;
+                        }
+                    }
+                }
+                Console.WriteLine("Output = " + max);
+            }
+
+
+            Console.ReadLine();
+
+//t5
+
+Console.WriteLine("Enter the length of array:");
+            int[] nums = new int[Convert.ToInt32(Console.ReadLine())];
+            Console.WriteLine("Fill the array:");
+            for (int i = 0; i < nums.Length; i++)
+            {
+                Console.Write("nums[{0}] = ", i);
+                nums[i] = Convert.ToInt32(Console.ReadLine());
+            }
+            Console.WriteLine("Array has been filled.");
+
+            int index = 0;
+            int max = nums[0];
+            for (int i = 1; i < nums.Length; i++)
+            {
+                if (max < nums[i])
+                {
+                    max = nums[i];
+                    index = i;
+                }
+            }
+            Console.WriteLine("Output (position of max element) = " + index);
+
+
+            Console.ReadLine();
+
+//t6 
+
+Console.WriteLine("Enter System.Double:");
+            double real = Convert.ToDouble(Console.ReadLine());
+
+            Console.WriteLine(WordFormat(real));
+
+
+            Console.ReadLine();
+
+            string WordFormat(double num)
+            {
+                string[] words = new string[] { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "point", "minus" };
+
+                string output = "";
+                string s = num.ToString();
+                for (int i = 0; i < s.Length; i++)
+                {
+                    switch (s[i])
+                    {
+                        case '-':
+                            output += words[11] + " ";
+                            break;
+                        case '.':
+                            output += words[10] + " ";
+                            break;
+                        case '0':
+                            output += words[0] + " ";
+                            break;
+                        case '1':
+                            output += words[1] + " ";
+                            break;
+                        case '2':
+                            output += words[2] + " ";
+                            break;
+                        case '3':
+                            output += words[3] + " ";
+                            break;
+                        case '4':
+                            output += words[4] + " ";
+                            break;
+                        case '5':
+                            output += words[5] + " ";
+                            break;
+                        case '6':
+                            output += words[6] + " ";
+                            break;
+                        case '7':
+                            output += words[7] + " ";
+                            break;
+                        case '8':
+                            output += words[8] + " ";
+                            break;
+                        case '9':
+                            output += words[9] + " ";
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+                // first letter is big
+                string firstLetter = output.Substring(0, 1);
+                firstLetter = firstLetter.ToUpper();
+                output = firstLetter + output.Substring(1, output.Length - 1);
+
+                return output;
+            }
+
+//t7
+
+Console.WriteLine("Enter number:");
+            int num = Convert.ToInt32(Console.ReadLine());
+
+            List<int> nums = new List<int>();
+            for (int i = 0; i < num.ToString().Length; i++)
+            {
+                nums.Add(Convert.ToInt32(num.ToString().Substring(i, 1)));
+            }
+
+            List<string> list = new List<string>(); // get all combinations
+            GetAllCombinations(list, nums);
+            //for (int i = 0; i < list.Count; i++)
+            //{
+            //    Console.WriteLine(list[i]);
+            //}
+
+            for (int i = 0; i < list.Count; i++) // delete all numbers that start with zero or less than num
+            {
+                try
+                {
+                    if (list[i][0] == '0' || Convert.ToInt32(list[i]) <= num)
+                    {
+                        list.RemoveAt(i);
+                        i--;
+                    }
+                }
+                catch (Exception)
+                {
+                    break;
+                }
+            }
+
+            int closest = 0;
+            for (int i = 0; i < list.Count; i++)
+            {
+                if ((closest == 0 && Convert.ToInt32(list[i]) > num) || (closest != 0 && Convert.ToInt32(list[i]) > num && Convert.ToInt32(list[i]) < closest))
+                {
+                    closest = Convert.ToInt32(list[i]);
+                }
+            }
+            Console.WriteLine($"Output: {closest}");
+
+
+            Console.ReadLine();
+
+            void GetAllCombinations<T>(IList<string> array, IList< T> arr, string current = "")
+            {
+                if (arr.Count == 0) 
+                {
+                    array.Add(current);
+                    return;
+                }
+                for (int i = 0; i < arr.Count; i++) 
+                {
+                    List<T> lst = new List<T>(arr);
+                    lst.RemoveAt(i);
+                    GetAllCombinations(array, lst, current + arr[i].ToString());
+                }
+            }
+
+//t8
+
+int[] rgb = new int[3];
+            Console.WriteLine("Enter red:");
+            rgb[0] = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter green:");
+            rgb[1] = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter blue:");
+            rgb[2] = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine(Output(rgb));
+
+            Console.ReadLine();
+
+            string Output(int[] input)
+            {
+                string output = "";
+
+                for (int i = 0; i < 3; i++)
+                {
+                    if (input[i] < 0)
+                    {
+                        output += "00";
+                    }
+                    else if (input[i] > 255)
+                    {
+                        output += "FF";
+                    }
+                    else
+                    {
+                        int sixteenth = input[i] / 16; // how many times does 16 fit in a number
+                        input[i] -= 16 * sixteenth;
+                        if (sixteenth < 10)
+                        {
+                            output += sixteenth;
+                        }
+                        else
+                        {
+                            switch (sixteenth)
+                            {
+                                case 10:
+                                    output += "A";
+                                    break;
+                                case 11:
+                                    output += "B";
+                                    break;
+                                case 12:
+                                    output += "C";
+                                    break;
+                                case 13:
+                                    output += "D";
+                                    break;
+                                case 14:
+                                    output += "E";
+                                    break;
+                                case 15:
+                                    output += "F";
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                        if (input[i] < 10)
+                        {
+                            output += input[i];
+                        }
+                        else
+                        {
+                            switch (input[i])
+                            {
+                                case 10:
+                                    output += "A";
+                                    break;
+                                case 11:
+                                    output += "B";
+                                    break;
+                                case 12:
+                                    output += "C";
+                                    break;
+                                case 13:
+                                    output += "D";
+                                    break;
+                                case 14:
+                                    output += "E";
+                                    break;
+                                case 15:
+                                    output += "F";
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                    }
+                }
+                return output;
+            }
+
+//t9
+
+Console.WriteLine("Enter year:");
+            int year = Convert.ToInt32(Console.ReadLine());
+            if (year % 4 == 0)
+            {
+                Console.WriteLine("true");
+            }
+            else
+            {
+                Console.WriteLine("false");
+            }
+
+
+            Console.ReadLine();
+
+//t10
+
+Console.WriteLine("Enter n:");
+            int n = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter a:");
+            int a = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter r:");
+            int r = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine(Calculate(n, a, r));
+
+            Console.ReadLine();
+
+            int Calculate(int amount, int first, int second)
+            {
+                int sum = 0;
+                for (int i = 0; i < amount; i++)
+                {
+                    sum += first + second * i;
+                }
+                return sum;
+            }
+
+//t13
+
+Console.WriteLine("Enter version1:");
+            string version1 = Console.ReadLine();
+            Console.WriteLine("Enter version2:");
+            string version2 = Console.ReadLine();
+
+            version1 += "."; version2 += "."; // artificial point in the end (w/o it 1.1 and 1.11 not working properly because of the length)
+
+            // finding the amount of revisions
+            int amountRevisions = 0;
+            int buffer = 0;
+            for (int i = 0; i < version1.Length; i++)
+            {
+                if (version1[i] == '.')
+                {
+                    buffer++;
+                }
+            }
+            if (buffer > amountRevisions)
+            {
+                amountRevisions = buffer;
+            }
+
+            buffer = 0;
+            for (int i = 0; i < version2.Length; i++)
+            {
+                if (version2[i] == '.')
+                {
+                    buffer++;
+                }
+            }
+            if (buffer > amountRevisions)
+            {
+                amountRevisions = buffer;
+            }
+            amountRevisions++;
+
+            int output = 0;
+            int pointer = 0, pointer2 = 0; // position of current revision at string
+            int num1 = 0, num2 = 0;
+            bool end = false;
+            for (int i = 0; i < amountRevisions; i++)
+            {
+                num1 = 0; num2 = 0;
+                if (pointer != 0)
+                {
+                    pointer++;
+                }
+                pointer2 = pointer;
+
+                Console.WriteLine("pointer = " + pointer);
+
+                for (int i2 = pointer; i2 < version1.Length; i2++)
+                {
+                    try
+                    {
+                        if (version1[i2] == '.')
+                        {
+                            num1 = Convert.ToInt32(version1.Substring(pointer, i2 - pointer));
+                            pointer = i2;
+                            break;
+                        }
+                        else
+                        {
+                            if (pointer == version1.Length - 1)
+                            {
+                                num1 = Convert.ToInt32(version1.Substring(pointer, version1.Length - pointer));
+                                pointer = version1.Length;
+                                break;
+                            }
+                        }
+                    }
+                    catch (Exception) // 2.5 and 2.5.1 exception because OutOfRange pointer
+                    {
+                        try
+                        {
+                            num1 = Convert.ToInt32(version1.Substring(pointer, version1.Length - pointer));
+                            pointer = version1.Length;
+                            break;
+                        }
+                        catch (Exception)
+                        {
+                            num1 = 0;
+                        }
+                    }
+
+                }
+
+                for (int i2 = pointer2; i2 < version2.Length; i2++)
+                {
+                    try
+                    {
+                        if (version2[i2] == '.')
+                        {
+                            num2 = Convert.ToInt32(version2.Substring(pointer2, i2 - pointer2));
+                            pointer2 = i2;
+                            break;
+                        }
+                        else
+                        {
+                            if (pointer2 == version2.Length - 1)
+                            {
+                                num2 = Convert.ToInt32(version2.Substring(pointer2, version2.Length - pointer2));
+                                pointer2 = version2.Length;
+                                break;
+                            }
+                        }
+                    }
+                    catch (Exception) // 2.5 and 2.5.1 exception because OutOfRange pointer
+                    {
+                        try
+                        {
+                            num2 = Convert.ToInt32(version2.Substring(pointer2, version2.Length - pointer2));
+                            pointer2 = version2.Length;
+                            break;
+                        }
+                        catch (Exception)
+                        {
+                            num2 = 0;
+                        }
+                    }
+                }
+
+                pointer = Math.Max(pointer, pointer2);
+                pointer2 = pointer;
+
+                if (num1 != num2)
+                {
+                    Console.WriteLine("num1 = " + num1 + ", num2 = " + num2);
+                    end = true;
+                    if (num1 < num2)
+                    {
+                        output = -1;
+                    }
+                    else if (num1 > num2)
+                    {
+                        output = 1;
+                    }
+                }
+
+                if (end)
+                {
+                    break;
+                }
+            }
+
+            Console.WriteLine("\nOutput: " + output);
+
+            Console.ReadLine();
+
+//t15
+
+Console.WriteLine("Enter string:");
+            string s = Console.ReadLine();
+
+            List<char> letters = new List<char>(); // exclusive letters
+            List<int> amount = new List<int>(); // amount of those letters
+
+            bool same = false;
+
+            // counting all letters
+            for (int i = 0; i < s.Length; i++)
+            {
+                same = false;
+                for (int i2 = 0; i2 < letters.Count; i2++) // same letter detected (+1)
+                {
+                    if (letters[i2] == s[i])
+                    {
+                        amount[i2]++;
+                        same = true;
+                    }
+                }
+
+                if (!same) // new letter
+                {
+                    letters.Add(s[i]);
+                    amount.Add(1);
+                }
+            }
+
+            int output = amount.Max() - amount.Min();
+            Console.WriteLine("Output: " + output);
+
+
+            Console.ReadLine();
+
+//t16
+
+Console.WriteLine("Enter number:");
+            double num = Convert.ToInt32(Console.ReadLine());
+
+            List<double> list = new List<double>(); // powers of 3
+
+            // get all powers of 3 that are lower than number
+            int power = 1;
+            do
+            {
+                if (Math.Pow(3, power) <= num)
+                {
+                    list.Add(Math.Pow(3, power));
+                    power++;
+                }
+                else
+                {
+                    break;
+                }
+            } while (true);
+
+            // check
+            for (int i = 0; i < list.Count; i++)
+            {
+                Console.WriteLine("list[{0}] = {1}", i, list[i]);
+            }
+
+            // subtract powers of 3 (from higher to lower)
+            for (int i = list.Count - 1; i >= 0; i--)
+            {
+                if (list[i] <= num)
+                {
+                    num -= list[i];
+                }
+            }
+
+            if (num == 0)
+            {
+                Console.WriteLine("Output: true");
+            }
+            else
+            {
+                Console.WriteLine("Output: false");
+            }
+
+
+            Console.ReadLine();
+
+//t17
+
+Console.WriteLine("Enter string:");
+            string s = Console.ReadLine();
+
+            bool[] checkNum = new bool[s.Length]; // positions of nums
+            string noNums = ""; // string with no nums
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s[i] != '0' && s[i] != '1' && s[i] != '2' && s[i] != '3' && s[i] != '4' && s[i] != '5' && s[i] != '6' && s[i] != '7' && s[i] != '8' && s[i] != '9')
+                {
+                    checkNum[i] = true;
+                    noNums += s[i];
+                }
+            }
+
+            // amount of combinations
+            double amount = 0;
+            for (int i = 0; i < noNums.Length; i++)
+            {
+                amount += Math.Pow(2, i);
+            }
+            string[] combinations = new string[(int)amount + 1];
+
+            // create combinations of binary numbers (001, 010...) that will be used to determine upper/lower case letters
+            for (int i = 0; i < combinations.Length; i++)
+            {
+                string num = ""; // binary number 0101.... for combinations
+                int index = 0;
+                int currentNum = i;
+                int[] a = new int[noNums.Length];
+                for (int i2 = 0; currentNum > 0;  i2++) 
+                {
+                    a[i2] = currentNum % 2;
+                    currentNum /= 2;
+                    index = i2;
+                }
+                for (int i2 = index; i2 >= 0; i2--)
+                {
+                    num += a[i2];
+                }
+                while (num.Length < noNums.Length) 
+                {
+                    num = "0" + num;
+                }
+                combinations[i] = num;
+            }
+
+            // check combinations for all letters (upper = 1 / lower = 0)
+            for (int i = 0; i < combinations.Length; i++)
+            {
+                Console.WriteLine($"combination[{i}] = " + combinations[i]);
+            }
+
+            // output
+            Console.WriteLine("\nOutput:");
+            string[] outputs = new string[combinations.Length];
+            for (int i = 0; i < combinations.Length; i++)
+            {
+                int index = 0;
+                for (int i2 = 0; i2 < s.Length; i2++)
+                {
+                    if (s[i2] == '0' || s[i2] == '1' || s[i2] == '2' || s[i2] == '3' || s[i2] == '4' || s[i2] == '5' || s[i2] == '6' || s[i2] == '7' || s[i2] == '8' || s[i2] == '9') // if number
+                    {
+                        outputs[i] += s[i2];
+                    }
+                    else // if letter
+                    {
+                        if (combinations[i][index] == '0')
+                        {
+                            outputs[i] += Convert.ToString(s[i2]).ToLower();
+                            index++;
+                        }
+                        else if (combinations[i][index] == '1')
+                        {
+                            outputs[i] += Convert.ToString(s[i2]).ToUpper();
+                            index++;
+                        }
+                    }
+                }
+                Console.WriteLine(outputs[i]);
+            }
+
+
+            Console.ReadLine();
+
+//t18
+
+ Console.WriteLine("Enter ip:");
+            string ip = Console.ReadLine();
+
+            bool ipv4 = checkIPv4(ip);
+            bool ipv6 = checkIPv6(ip);
+
+            if (ipv4)
+            {
+                Console.WriteLine("Output: IPv4");
+            }
+            else if (ipv6)
+            {
+                Console.WriteLine("Output: IPv6");
+            }
+            else
+            {
+                Console.WriteLine("Output: Neither");
+            }
+
+            Console.ReadLine();
+
+            bool checkIPv4(string s)
+            {
+                int points = -1;
+                string[] split = s.Split('.');
+                points = split.Length;
+                if (points != 4) { return false; }
+
+                for (int i = 0; i < split.Length; i++)
+                {
+                    if (Convert.ToInt32(split[i]) < 0 || Convert.ToInt32(split[i]) > 255)
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            bool checkIPv6(string s)
+            {
+                char[] chars = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+
+                int colons = -1;
+                string[] split = s.Split(':');
+                colons = split.Length;
+                if (colons != 8) { return false; }
+
+                bool checkNumbers = true;
+                for (int i = 0; i < split.Length; i++)
+                {
+                    if (split[i].Length < 1 && split[i].Length > 4)
+                    {
+                        return false;
+                    }
+                }
+
+                for (int i = 0; i < split.Length; i++) // each sequence
+                {
+                    for (int i2 = 0; i2 < split[i].Length; i2++) // each letter
+                    {
+                        bool check = false;
+                        for (int i3 = 0; i3 < chars.Length; i3++)
+                        {
+                            if (chars[i3] == split[i][i2])
+                            {
+                                check = true;
+                            }
+                        }
+                        if (!check)
+                        {
+                            return false;
+                        }
+                    }
+                }
+
+                return true;
+            }
+
+//t19
+
+Console.WriteLine("Enter codes (separated by spaces):");
+            string s = Console.ReadLine();
+
+            string[] amountOfCodes = s.Split(new char[] { ' ' });
+            Console.WriteLine("amountOfCodes=" + amountOfCodes.Length);
+
+            List<char> codes = new List<char>(); // exclusive code
+            List<int> amount = new List<int>(); // amount of those codes
+
+            bool same = false;
+
+            // counting all codes
+            for (int i = 0; i < amountOfCodes.Length; i++)
+            {
+                same = false;
+                for (int i2 = 0; i2 < codes.Count; i2++) // same code detected (+1)
+                {
+                    if (codes[i2] == Convert.ToChar(amountOfCodes[i]))
+                    {
+                        amount[i2]++;
+                        same = true;
+                    }
+                }
+
+                if (!same) // new code
+                {
+                    codes.Add(Convert.ToChar(amountOfCodes[i]));
+                    amount.Add(1);
+                }
+            }
+
+            // check
+            for (int i = 0; i < codes.Count; i++)
+            {
+                Console.WriteLine("codes[{0}]={1}, amount[{2}]={3}", i, codes[i], i, amount[i]);
+            }
+
+            // sorting 
+            string output = "";
+            char last = ' ';
+
+            for (int i = 0; i < amountOfCodes.Length; i++)
+            {
+                for (int i2 = 0; i2 < codes.Count; i2++)
+                {
+                    if (amount.Max() == amount[i2]) // find max
+                    {
+                        if (last == codes[i2]) // same as last, skip
+                        {
+                            // get second max
+                            int max2 = 0;
+                            int index = -1;
+                            for (int i3 = 0; i3 < codes.Count; i3++)
+                            {
+                                if (codes[i3] != last && max2 < amount[i3])
+                                {
+                                    max2 = amount[i3];
+                                    index = i3;
+                                }
+                            }
+
+                            output += codes[index] + " ";
+                            last = codes[index];
+                            amount[index]--;
+                            break;
+                        }
+                        else // not same as last
+                        {
+                            output += codes[i2] + " ";
+                            last = codes[i2];
+                            amount[i2]--;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            Console.WriteLine("Output: " + output);
+
+
+            Console.ReadLine();
+
+//t20
+
+Console.WriteLine("Enter the number:");
+            int num = Convert.ToInt32(Console.ReadLine());
+
+            List<int> list = new List<int>(); // primt numbers
+
+            for (int i = 2; i < num; i++)
+            {
+                bool prime = true;
+                for (int i2 = i - 1; i2 > 1; i2--) // dividing the number i by i2 that is less than i by 1 and more than 1 (not including itself and 1)
+                {
+                    if (i % i2 == 0)
+                    {
+                        prime = false;
+                        break;
+                    }
+                }
+
+                if (prime)
+                {
+                    list.Add(i);
+                }
+            }
+
+            Console.WriteLine("Output: " + list.Count);
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                Console.Write(list[i] + ", ");
+            }
+
+
+            Console.ReadLine();
+
+//t21
+
+Console.WriteLine("Enter ax1 (x-coordinate of bottom left cornet of 1st rectangle):");
+            int ax1 = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter ay1 (y-coordinate of bottom left cornet of 1st rectangle):");
+            int ay1 = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Enter ax2 (x-coordinate of top right cornet of 1st rectangle):");
+            int ax2 = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter ay2 (y-coordinate of top right cornet of 1st rectangle):");
+            int ay2 = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Enter bx1 (x-coordinate of bottom left cornet of 2nd rectangle):");
+            int bx1 = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter by1 (y-coordinate of bottom left cornet of 2nd rectangle):");
+            int by1 = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Enter bx2 (x-coordinate of top right cornet of 2nd rectangle):");
+            int bx2 = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter by2 (y-coordinate of top right cornet of 2nd rectangle):");
+            int by2 = Convert.ToInt32(Console.ReadLine());
+
+            // rectangles' corners 
+            (int, int) bottom1 = (ax1, ay1);
+            (int, int) top1 = (ax2, ay2);
+            (int, int) bottom2 = (bx1, by1);
+            (int, int) top2 = (bx2, by2);
+
+            int sum = 0; // amount of pixels that are inside of both rectangles
+
+            // 3rd rectangle that includes 2 other rectangles
+            (int, int) bottom3 = (Math.Min(ax1, bx1), Math.Min(ay1, by1));
+            (int, int) top3 = (Math.Max(ax2, bx2), Math.Max(ay2, by2));
+
+            // searching for pixels that are inside of both rectangles
+            for (int i = bottom3.Item1; i <= top3.Item1; i++) // length
+            {
+                for (int i2 = bottom3.Item2; i2 <= top3.Item2; i2++) // height
+                {
+                    if (i >= bottom1.Item1 && i < top1.Item1 && i2 >= bottom1.Item2 && i2 < top1.Item2 && i >= bottom2.Item1 && i < top2.Item1 && i2 >= bottom2.Item2 && i2 < top2.Item2)
+                    {
+                        Console.WriteLine(i + " " + i2);
+                        sum++;
+                    }
+                }
+            }
+
+            int square1 = (top1.Item1 - bottom1.Item1) * (top1.Item2 - bottom1.Item2);
+            int square2 = (top2.Item1 - bottom2.Item1) * (top2.Item2 - bottom2.Item2);
+            Console.WriteLine("\nOutput: {0}", square1 + square2 - sum);
+
+
+            Console.ReadLine();
